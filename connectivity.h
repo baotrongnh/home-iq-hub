@@ -61,7 +61,7 @@ void mqttCallback(char* topic, byte* payload, unsigned int length) {
 
   // --- Control door ---
   if (strcmp(topic, TOPIC_DOOR) == 0) {
-    if (message == "OPEN_1") triggerUnlockDoor();
+    if (message == "ON_1") triggerUnlockDoor();
     return;
   }
 
@@ -79,10 +79,10 @@ void mqttCallback(char* topic, byte* payload, unsigned int length) {
 
   // --- Control curtain ---
   if (strcmp(topic, TOPIC_CURTAIN) == 0) {
-    if (message == "OPEN_1") {
+    if (message == "ON_1") {
       curtainCmdClose = false;
       curtainCmdOpen  = true;
-    } else if (message == "CLOSE_1") {
+    } else if (message == "OFF_1") {
       curtainCmdOpen  = false;
       curtainCmdClose = true;
     }
