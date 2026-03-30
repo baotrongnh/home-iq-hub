@@ -1,3 +1,4 @@
+#include "Client.h"
 #ifndef CONNECTIVITY_H
 #define CONNECTIVITY_H
 
@@ -110,6 +111,13 @@ void mqttCallback(char* topic, byte* payload, unsigned int length) {
     } else if (message == "OFF_1") {
       curtainCmdOpen  = false;
       curtainCmdClose = true;
+    }
+    return;
+  }
+
+  if (strcmp(topic, TOPIC_STATUS) == 0) {
+    if (message == "ARE_YOU_OK") {
+      client.publish(TOPIC_STATUS, "ONLINE");
     }
     return;
   }
